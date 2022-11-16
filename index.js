@@ -1,64 +1,106 @@
-import Methods from './modules/utils.js';
+import userId from './modules/user-id.js';
+import newLoad from './modules/loader.js';
+import {
+  newNewBtn, newContactBtn, newListBtn, newForm, newListSection, newAddSection, newContactSection, newSectionOne, newTime,
+} from './modules/elements.js';
+import {
+  booksStore, Books, addRemoveListener, appendBooks,
+} from './modules/class.js';
+import { DateTime } from './modules/luxon.js';
 
+const now = DateTime.now();
+newTime.innerHTML = now;
 
+// Add event listener to new button to show form
+newNewBtn.addEventListener('click', () => {
+  newLoad();
 
-const addTitle = document.querySelector('#addTitle');
-const addAuthor = document.querySelector('#addAuthor');
-const addForm = document.querySelector('#addBook');
-const showCurrentTime = document.querySelector('.current-time');
-
-const listMenu = document.querySelector('#list-section');
-const addBookMenu = document.querySelector('#add-book-section');
-const contactMenu = document.querySelector('#contact-section');
-const listSection = document.querySelector('.main');
-const addBookSection = document.querySelector('.formSection');
-const contactSection = document.querySelector('.contact');
-
-addForm.addEventListener('submit', (event) => {
-  event.preventDefault();
-  Methods.addBook(addTitle.value, addAuthor.value);
-
-  addAuthor.value = '';
-  addTitle.value = '';
-
-  Methods.showBooks();
-});
-
-listMenu.addEventListener('click', (e) => {
-  e.preventDefault();
-  listSection.style.display = 'block';
-  addBookSection.style.display = 'none';
-  contactSection.style.display = 'none';
-});
-
-addBookMenu.addEventListener('click', (e) => {
-  e.preventDefault();
-  addBookSection.style.display = 'block';
-  listSection.style.display = 'none';
-  contactSection.style.display = 'none';
-});
-
-contactMenu.addEventListener('click', (e) => {
-  e.preventDefault();
-  contactSection.style.display = 'block';
-  listSection.style.display = 'none';
-  addBookSection.style.display = 'none';
-});
-
-const showDateTime = () => {
-  const time = DateTime.now();
-  const curTime = time.toLocaleString(DateTime.DATETIME_FULL_WITH_SECONDS);
-
-  showCurrentTime.textContent = curTime;
-};
-
-window.onload = () => {
-  if (localStorage.getItem('storedBookData') !== null && localStorage.getItem('storedBookData') !== '[]') {
-    Methods.showBooks();
-    listSection.style.display = 'block';
-    addBookSection.style.display = 'none';
-    contactSection.style.display = 'none';
+  if (newListSection.classList.contains('show')) {
+    newListSection.classList.replace('show', 'hide');
+    newListBtn.classList.remove('active');
+    newAddSection.classList.replace('hide', 'show');
+    newSectionOne.style.height = '90vh';
+    newSectionOne.classList.replace('list-back', 'add-back');
+    newNewBtn.classList.add('active');
+  } else {
+    newContactSection.classList.replace('show', 'hide');
+    newContactBtn.classList.remove('active');
+    newAddSection.classList.replace('hide', 'show');
+    newSectionOne.style.height = '90vh';
+    newSectionOne.classList.replace('contact-back', 'add-back');
+    newNewBtn.classList.add('active');
   }
+});
 
-  setInterval(showDateTime, 1000);
-};
+// Add event listener to contact button to show contact-info
+newContactBtn.addEventListener('click', () => {
+  newLoad();
+
+  if (newListSection.classList.contains('show')) {
+    newListSection.classList.replace('show', 'hide');
+    newListBtn.classList.remove('active');
+    newContactSection.classList.replace('hide', 'show');
+    newSectionOne.style.height = '90vh';
+    newSectionOne.classList.replace('list-back', 'contact-back');
+    newContactBtn.classList.add('active');
+  } else {
+    newAddSection.classList.replace('show', 'hide');
+    newNewBtn.classList.remove('active');
+    newContactSection.classList.replace('hide', 'show');
+    newSectionOne.style.height = '90vh';
+    newSectionOne.classList.replace('add-back', 'contact-back');
+    newContactBtn.classList.add('active');
+  }
+});
+
+// Add event listener to list button to show booksStore
+newListBtn.addEventListener('click', () => {
+  newLoad();
+
+  if (newAddSection.classList.contains('show')) {
+    newAddSection.classList.replace('show', 'hide');
+    newNewBtn.classList.remove('active');
+    newListSection.classList.replace('hide', 'show');
+    newSectionOne.style.height = '';
+    newSectionOne.classList.replace('add-back', 'list-back');
+    newSectionOne.style.paddingBottom = '150px';
+    newListBtn.classList.add('active');
+  } else {
+    newContactSection.classList.replace('show', 'hide');
+    newContactBtn.classList.remove('active');
+    newListSection.classList.replace('hide', 'show');
+    newSectionOne.style.paddingBottom = '150px';
+    newSectionOne.classList.replace('contact-back', 'list-back');
+    newListBtn.classList.add('active');
+  }
+});
+
+// Add submit event listener to form to add book to local storage and DOM
+newForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const booksTitle = document.getElementById('bookstitle');
+  const booksAuthor = document.getElementById('booksauthor');
+  const books = new Books(userId(), booksTitle.value, booksAuthor.value);
+  books.addBooks();
+  localStorage.setItem('booksStore', JSON.stringify(booksStore));
+  appendBooks(books);
+  addRemoveListener(books);
+  localStorage.removeItem('tableData');
+  booksAuthor.value = '';
+  booksTitle.value = '';
+
+  newLoad();
+  if (newAddSection.classList.contains('show')) {
+    newAddSection.classList.replace('show', 'hide');
+    newNewBtn.classList.remove('active');
+    newListSection.classList.replace('hide', 'show');
+    newSectionOne.style.paddingBottom = '150px';
+    newListBtn.classList.add('active');
+  } else {
+    newContactSection.classList.replace('show', 'hide');
+    newContactBtn.classList.remove('active');
+    newListSection.classList.replace('hide', 'show');
+    newSectionOne.style.paddingBottom = '150px';
+    newListBtn.classList.add('active');
+  }
+});
