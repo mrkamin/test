@@ -1,4 +1,5 @@
 import Methods from './modules/utils.js';
+import { DateTime } from "luxon";
 import { DateTime } from './modules/Luxon.js';
 
 const addTitle = document.querySelector('#addTitle');
