@@ -6,7 +6,7 @@ import {
 import {
   booksStore, Books, addRemoveListener, appendBooks,
 } from './modules/class.js';
-import { DateTime } from "./modules/luxon";
+import { DateTime } from './modules/luxon.js';
 
 const now = DateTime.now();
 newTime.innerHTML = now;
