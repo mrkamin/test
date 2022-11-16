@@ -4,52 +4,50 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="index.css">
-    <title>AWESOME BOOK WEB-APP</title>
+    <title>AWESOME-BOOKS-ES6</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <nav class="nav">
-        <span><a class="logo" href="./index.html">Awesome Books</a></span>
-        <ul>
-        <li><a href="#" class="list" id="list-section">List</a></li>
-        <li><a href="#" class="list" id="add-book-section">Add new</a></li>
-        <li><a href="#" class="list" id="contact-section">Contact</a></li>
-    </ul>
-    </nav>
-
-    <div class="time-box"><span class="current-time">Current Time</span></div>
-    <main class="main">
-        <h1 class="main-title">All Awesome Books</h1>
-        <div class="books"></div>
-       
-    </main>
-    <section class="formSection">
-        <form id="addBook" method="post">
-            <h3 class="form-title">Add  New Book</h3>
-            <input id="addTitle" type="text" placeholder="Title" required>
-            <input id="addAuthor" type="text" placeholder="Author" required>
-            <button type="submit">Add</button>
-        </form>
-        <div class="success-msg">
-            <span>Book Added Successfully</span>
+    <header id="header" class="header">
+        <div id="parnav__container" class="parnav__container">
+            <div id="parnav__container__logo" class="parnav__container__logo">Awesome Books</div>
+            <ul id="parnav__container__ul" class="parnav__container__ul">
+                <li><a href="#" id="list" class="list active">List Book</a></li>
+                <li><a href="#" id="new" class="new">Add New Book</a></li>
+                <li><a href="#" id="contact" class="contact">Contact Info</a></li>
+            </ul>
         </div>
+        <div class="date-time">
+            <h3 class="date"></h3>
+        </div>
+    </header>
+
+    <div><h1 class="awesomeBooks">Awesome Books</h1></div>
+
+    <div class="bookDisplay">
+        
+    </div>
+
+
+    <form id="book-card" action="#">
+        <h2 class="formHeader">Add a new book</h2>
+        <input id="title" type="text" placeholder="Title"> <br><br>
+        <input id="author" type="text" placeholder="Author"><br><br>
+        <div class="but">
+        <button id="add" type="submit"> Add </button>
+        </div>
+    </form>
+
+    <section class="contactUs">
     </section>
-    <section class="contact">
-        <h3 class="contact-title">Contact information</h3>
-        <p class="contact-content">
-            Do you have any questions or you just want to say "Hello"? <br>
-            You can reach out to us!
-        </p>
-        <ul class="contact-list">
-            <li class="list-element">Our email: mail@mail.com</li>
-            <li class="list-element">Our phone number: 0043586534422</li>
-            <li class="list-element">Our address: Streetname 22, 84503 San Francisco, California - Microverse</li>
-        </ul>
-    </section>
 
-    <footer>Copyright of VAlentine Blaze... Microverse 2022. All rights reserved</footer>
-
-
-    <script type="module" src="./index.js"></script>
+    <footer>
+        <div class="foot">
+        <h2 class="footerHead">&copy;
+            Copyright 2022, B.Moise
+        </h2>
+        </div>
+    </footer>
+    <script src="apps.js" type="module"></script>
 </body>
 </html>
