@@ -1,55 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="index.css">
-    <title>AWESOME BOOK WEB-APP</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/e83d856101.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="./assets/index.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Awesome Books</title>
 </head>
 <body>
-    <nav class="nav">
-        <span><a class="logo" href="./index.html">Awesome Books</a></span>
-        <ul>
-        <li><a href="#" class="list" id="list-section">List</a></li>
-        <li><a href="#" class="list" id="add-book-section">Add new</a></li>
-        <li><a href="#" class="list" id="contact-section">Contact</a></li>
+  <!-- || HEADER -->
+  <header>
+      <h2 class="header__logo">Awesome Books</h2>
+    <ul>
+      <li><a href="#" id="list__btn" class="active">List</a></li>
+      <li><a href="#" id="new__btn">New</a></li>
+      <li><a href="#" id="contact__btn">Contact</a></li>
     </ul>
-    </nav>
-
-    <div class="time-box"><span class="current-time">Current Time</span></div>
-    <main class="main">
-        <h1 class="main-title">All Awesome Books</h1>
-        <div class="books"></div>
-       
-    </main>
-    <section class="formSection">
-        <form id="addBook" method="post">
-            <h3 class="form-title">Add a New Book</h3>
-            <input id="addTitle" type="text" placeholder="Title" required>
-            <input id="addAuthor" type="text" placeholder="Author" required>
-            <button type="submit">Add</button>
-        </form>
-        <div class="success-msg">
-            <span>Book Added Successfully</span>
+  </header>
+  <!-- || END HEADER -->
+  <!-- || LOAD SCREEN -->
+  <div class="screen__loader hide" id="screen__loader">
+    <div class="screen__loader__container"><div class="screen__loader__container__items">
+      <div></div><div></div>
+      </div></div>
+  </div>
+  <!-- || END LOAD SCREEN -->
+  <!-- || MAIN  -->
+  <section id="sectionone" class="sectionone">
+    <div id="sectionone__time"></div>
+    <!-- || LIBRARY -->
+    <div class="library__list show" id="library__list">
+      <h1>All Awesome Books</h1>
+      <div id="sectionone__library">
+        <div class="library__empty" id="library__empty">
+          <h2>Book store is empty. Add some books to see them here</h2>
+          <i class="fa-solid fa-book fa-3x"></i>
         </div>
-    </section>
-    <section class="contact">
-        <h3 class="contact-title">Contact information</h3>
-        <p class="contact-content">
-            Do you have any questions or you just want to say "Hello"? <br>
-            You can reach out to us!
-        </p>
-        <ul class="contact-list">
-            <li class="list-element">Our email: mail@mail.com</li>
-            <li class="list-element">Our phone number: 0043586534422</li>
-            <li class="list-element">Our address: Streetname 22, 84503 San Francisco, California - Microverse</li>
-        </ul>
-    </section>
-
-    <footer>Copyright of VAlentine Blaze... Microverse 2022. All rights reserved</footer>
-
-
-    <script type="module" src="./index.js"></script>
+      </div>
+    </div>
+    <!-- || FORM -->
+    <div class="form__add hide" id="form__add">
+      <h1>Add a new Book</h1>
+      <form action="#" id="form">
+        <input type="text" name="bookstitle" id="bookstitle" placeholder="Books Title" required>
+        <input type="text" name="booksauthor" id="booksauthor" placeholder="Books Author" required>
+        <button id="add__btn" type="submit" >Add a Book</button>
+      </form>
+    </div>
+    <!-- Contact -->
+    <div class="contact__container hide" id="contact">
+      <h1>Contact Information</h1>
+      <p>Do you have any Information or do you just want to say "Hi"? <br> You can reach out to us!</p>
+      <ul>
+        <li>Our e-mail: mrkamin2@gmail.com</li>
+        <li>Our phone number: 009259904851</li>
+        <li>Our address: Park Street, 457896 London, U.K</li>
+      </ul>
+    </div>
+  </section>
+  <!-- Footer -->
+  <footer>
+    <p>Copyright &copy 2022 All rights reserved | A project by MRK Amin.</p>
+  </footer>
+  <!-- Scripts -->
+  <script type="module" src="index.js"></script>
+  <script src="./modules/localStorage.js"></script>
 </body>
 </html>
